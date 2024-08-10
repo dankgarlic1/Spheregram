@@ -8,6 +8,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import { fileURLToPath } from "url";
 import path from "path";
+import { register } from "./controller/auth";
 
 const __fileName = fileURLToPath(import.meta.url);
 
@@ -33,6 +34,10 @@ const storage = multer.diskStorage({
     cb(null, file.originalname);
   },
 });
+const upload = multer({ storage });
+
+//routes with files
+app.post("/auth/register", upload.single("picture"), register);
 
 //MONGOOSE setup
 const PORT = process.env.PORT || 6001;
