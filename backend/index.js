@@ -9,6 +9,8 @@ import morgan from "morgan";
 import { fileURLToPath } from "url";
 import path from "path";
 import { register } from "./controller/auth.js";
+import { authRouter } from "./routes/auth.js";
+import { userRouter } from "./routes/users.js";
 
 const __fileName = fileURLToPath(import.meta.url);
 
@@ -38,7 +40,9 @@ const upload = multer({ storage });
 
 //routes with files
 
-app.post("/auth/register", upload.single("picture"), register);
+app.post("/auth/register", upload.single("picture"), register); //this route is here intentionally becaue we needed upload
+app.use("/auth", authRouter);
+app.use("/user", userRouter);
 
 //MONGOOSE setup
 const PORT = process.env.PORT || 6001;
