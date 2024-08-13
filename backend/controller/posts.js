@@ -39,7 +39,7 @@ export const getFeedPosts = async (req, res) => {
 export const getUserPost = async (req, res) => {
   try {
     const { userId } = req.params;
-    const post = await Post.find({ userId });
+    const post = await Post.find({ userId: userId });
     res.status(200).json(post);
   } catch (error) {
     console.log(error);
@@ -52,7 +52,7 @@ export const likePost = async (req, res) => {
   try {
     const { id } = req.params;
     const { userId } = req.body;
-    const post = await Post.find(id);
+    const post = await Post.findById(id);
     const isLiked = post.likes.get(userId);
     if (isLiked) {
       post.likes.delete(userId);
