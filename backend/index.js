@@ -14,7 +14,9 @@ import { userRouter } from "./routes/users.js";
 import { postRouter } from "./routes/posts.js";
 import { verifyToken } from "./middleware/auth.js";
 import { createPost } from "./controller/posts.js";
-
+import { users, posts } from "./data/index.js";
+import User from "./model/User.js";
+import Post from "./model/Post.js";
 const __fileName = fileURLToPath(import.meta.url);
 
 const __dirname = path.dirname(__fileName);
@@ -48,6 +50,10 @@ app.post("/posts", verifyToken, upload.single("picture"), createPost);
 app.use("/auth", authRouter);
 app.use("/user", userRouter);
 app.use("/posts", postRouter);
+
+//add dummy data, run this only once
+// User.insertMany(users);
+// Post.insertMany(posts);
 
 //MONGOOSE setup
 const PORT = process.env.PORT || 6001;
