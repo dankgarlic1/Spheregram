@@ -11,6 +11,9 @@ import path from "path";
 import { register } from "./controller/auth.js";
 import { authRouter } from "./routes/auth.js";
 import { userRouter } from "./routes/users.js";
+import { postRouter } from "./routes/posts.js";
+import { verifyToken } from "./middleware/auth.js";
+import { createPost } from "./controller/posts.js";
 
 const __fileName = fileURLToPath(import.meta.url);
 
@@ -39,10 +42,12 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 //routes with files
-
 app.post("/auth/register", upload.single("picture"), register); //this route is here intentionally becaue we needed upload
+app.post("/posts", verifyToken, upload.single("picture"), createPost);
+
 app.use("/auth", authRouter);
 app.use("/user", userRouter);
+app.use("/posts", postRouter);
 
 //MONGOOSE setup
 const PORT = process.env.PORT || 6001;
