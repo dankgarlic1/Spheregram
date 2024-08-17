@@ -30,7 +30,7 @@ export const colorTokens = {
 
 export const themeSettings = (mode) => {
   return {
-    pallete: {
+    palette: {
       mode: mode,
       ...(mode === "dark"
         ? {
@@ -72,7 +72,7 @@ export const themeSettings = (mode) => {
             },
           }),
     },
-    typograpy: {
+    typography: {
       fontFamily: ["Rubik", "sans-serif"].join(","),
       fontSize: 12,
 

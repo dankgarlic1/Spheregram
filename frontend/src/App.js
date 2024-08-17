@@ -7,6 +7,7 @@ import { useMemo } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { themeSettings } from "./theme";
 import { CssBaseline } from "@mui/material";
+
 function App() {
   const mode = useSelector((state) => state.mode); //grabs initial state
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
