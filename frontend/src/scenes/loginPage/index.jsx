@@ -1,4 +1,5 @@
 import { Box, useMediaQuery, useTheme, Typography } from "@mui/material";
+import Form from "./Form";
 
 export const LoginPage = () => {
   const theme = useTheme();
@@ -25,6 +26,7 @@ export const LoginPage = () => {
         <Typography fontWeight="500" variant="h5" sx={{ mb: "1.5rem" }}>
           Welcome to Spheregram, the Social Media for Sphere Worshipers!
         </Typography>
+        <Form />
       </Box>
     </Box>
   );
