@@ -5,7 +5,7 @@ import * as yup from "yup";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setLogin } from "../../state";
+import { register, login } from "../../helper/api-communicator";
 import {
   Box,
   TextField,
@@ -50,10 +50,19 @@ export const Form = () => {
   const { palette } = useTheme();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const isNonMobileScreens = useMediaQuery("(min-width:600px)");
   const isLogin = pageType === "login";
   const isRegister = pageType === "register";
-  const handleSubmit = async (values, onSubmitProps) => {};
+
+  const handleSubmit = async (values, onSubmitProps) => {
+    if (isLogin) {
+      await login(values, onSubmitProps, dispatch, navigate);
+    }
+    if (isRegister) {
+      await register(values, onSubmitProps, setPageType);
+    }
+  };
   return (
     <div>
       <Formik

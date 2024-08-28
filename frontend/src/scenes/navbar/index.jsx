@@ -37,9 +37,8 @@ export const Navbar = () => {
   const primaryLight = theme.palette.primary.light;
   const background = theme.palette.background.default;
   const alt = theme.palette.background.alt;
-  const fullName = "Harshit Raizada";
 
-  // const fullName = `${user.firstName} ${user.lastName}`;
+  const fullName = `${user.firstName} ${user.lastName}`;
   return (
     <FlexBetween padding="1rem 6%" backgroundColor={alt}>
       <FlexBetween gap="1.75rem">
