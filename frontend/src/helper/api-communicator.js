@@ -48,3 +48,19 @@ export const login = async (values, onSubmitProps, dispatch, navigate) => {
     console.log("Error logging in:", error);
   }
 };
+
+export const getUser = async (id, setUser, token) => {
+  try {
+    const res = await axios.get(`http://localhost:3001/user/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const user = res.data.user;
+    if (user) {
+      setUser(user);
+    }
+  } catch (error) {
+    console.error("Error fetching user:", error);
+  }
+};

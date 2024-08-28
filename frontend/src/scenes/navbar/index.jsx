@@ -3,7 +3,6 @@ import {
   FormControl,
   IconButton,
   InputBase,
-  Menu,
   MenuItem,
   Select,
   Typography,
@@ -18,6 +17,7 @@ import {
   Message,
   Notifications,
   Search,
+  Menu,
 } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
