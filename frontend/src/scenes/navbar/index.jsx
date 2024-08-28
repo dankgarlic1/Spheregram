@@ -22,7 +22,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FlexBetween } from "../../components/FlexBetween";
+import FlexBetween from "../../components/FlexBetween";
 import { setLogout, setMode } from "../../state";
 
 export const Navbar = () => {

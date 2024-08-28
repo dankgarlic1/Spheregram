@@ -2,10 +2,20 @@ import React, { useState } from "react";
 import { Formik } from "formik";
 import Dropzone from "react-dropzone";
 import * as yup from "yup";
-import { useTheme } from "@emotion/react";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Box, TextField, useMediaQuery } from "@mui/material";
+import { setLogin } from "../../state";
+import {
+  Box,
+  TextField,
+  Button,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
+import FlexBetween from "../../components/FlexBetween";
+
 const registerSchema = yup.object().shape({
   firstName: yup.string().required("required"),
   lastName: yup.string().required("required"),
@@ -35,9 +45,9 @@ const initialValuesLogin = {
   password: "",
 };
 
-const Form = () => {
+export const Form = () => {
   const [pageType, setPageType] = useState("login"); //for switching register,login
-  const { pallete } = useTheme();
+  const { palette } = useTheme();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isNonMobileScreens = useMediaQuery("(min-width:600px)");
@@ -78,6 +88,7 @@ const Form = () => {
                     label="First Name"
                     onBlur={handleBlur}
                     onChange={handleChange}
+                    value={values.firstName}
                     name="firstName"
                     error={
                       Boolean(touched.firstName) && Boolean(errors.firstName)
@@ -92,6 +103,7 @@ const Form = () => {
                     onBlur={handleBlur}
                     onChange={handleChange}
                     name="lastName"
+                    value={values.lastName}
                     error={
                       Boolean(touched.lastName) && Boolean(errors.lastName)
                     }
@@ -105,6 +117,7 @@ const Form = () => {
                     onBlur={handleBlur}
                     onChange={handleChange}
                     name="location"
+                    value={values.location}
                     error={
                       Boolean(touched.location) && Boolean(errors.location)
                     }
@@ -118,6 +131,7 @@ const Form = () => {
                     onBlur={handleBlur}
                     onChange={handleChange}
                     name="occupation"
+                    value={values.occupation}
                     error={
                       Boolean(touched.occupation) && Boolean(errors.occupation)
                     }
@@ -128,7 +142,7 @@ const Form = () => {
                   />
                   <Box
                     gridColumn="span 4"
-                    border={`1px solid ${pallete.neutral.medium}`}
+                    border={`1px solid ${palette.neutral.medium}`}
                     borderRadius="5px"
                     p="1rem"
                   >
@@ -138,16 +152,93 @@ const Form = () => {
                       onDrop={(acceptedFiles) => {
                         setFieldValue("picture", acceptedFiles[0]);
                       }}
-                    ></Dropzone>
+                    >
+                      {({ getRootProps, getInputProps }) => (
+                        <Box
+                          {...getRootProps()}
+                          border={`2px dashed ${palette.primary.main}`}
+                          p="1rem"
+                          sx={{
+                            "&:hover": { cursor: "pointer" },
+                          }}
+                        >
+                          <input {...getInputProps()} />
+                          {!values.picture ? (
+                            <p>Add a picture here</p>
+                          ) : (
+                            <FlexBetween>
+                              <Typography>{values.picture.name}</Typography>
+                              <EditOutlinedIcon />
+                            </FlexBetween>
+                          )}
+                        </Box>
+                      )}
+                    </Dropzone>
                   </Box>
                 </>
               )}
+              <TextField
+                label="Email"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                type="email"
+                value={values.email}
+                name="email"
+                error={Boolean(touched.email) && Boolean(errors.email)}
+                helperText={touched.email && errors.email}
+                sx={{
+                  gridColumn: "span 4",
+                }}
+              />
+              <TextField
+                label="Password"
+                type="password"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.password}
+                name="password"
+                error={Boolean(touched.password) && Boolean(errors.password)}
+                helperText={touched.password && errors.password}
+                sx={{
+                  gridColumn: "span 4",
+                }}
+              />
             </Box>
+            {/* Buttons */}
+            <Button
+              fullWidth
+              type="submit"
+              sx={{
+                m: "2rem 0",
+                p: "1rem",
+                backgroundColor: palette.primary.main,
+                color: palette.background.alt,
+                "&:hover": { color: palette.primary.main },
+              }}
+            >
+              {isLogin ? "LOGIN" : "REGISTER"}
+            </Button>
+            <Typography
+              onClick={() => {
+                setPageType(isLogin ? "register" : "login");
+                resetForm();
+              }}
+              sx={{
+                textDecoration: "underline",
+                color: palette.primary.main,
+                "&: hover": {
+                  cursor: "pointer",
+                  color: palette.primary.light,
+                },
+              }}
+            >
+              {isLogin
+                ? "Don't have an account? Signup here"
+                : "Already have an account? Login here"}
+            </Typography>
           </form>
         )}
       </Formik>
     </div>
   );
 };
-
-export default Form;
