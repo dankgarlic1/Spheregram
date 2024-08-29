@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Box, Typography, useTheme } from "@mui/material";
-import {} from "@mui/icons-material";
+import { Box, IconButton, Typography, useTheme } from "@mui/material";
+import { PersonAddOutlined, PersonRemoveOutlined } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { setFriends } from "../state";
 import React from "react";
@@ -37,9 +37,37 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
             navigate(0); //refresh
           }}
         >
-          <Typography></Typography>
+          <Typography
+            sx={{
+              color: { main },
+              variant: "h5",
+              fontWeight: "500",
+              "&:hover": {
+                color: palette.primary.light,
+                cursor: "pointer",
+              },
+            }}
+          >
+            {name}
+            <Typography color={medium} fontSize="0.75rem">
+              {subtitle}
+            </Typography>
+          </Typography>
         </Box>
       </FlexBetween>
+      <IconButton
+        onClick={() => patchFriend()}
+        sx={{
+          backgroundColor: primaryLight,
+          p: "0.6",
+        }}
+      >
+        {isFriend ? (
+          <PersonRemoveOutlined sx={{ color: primaryDark }} />
+        ) : (
+          <PersonAddOutlined sx={{ color: primaryDark }} />
+        )}
+      </IconButton>
     </FlexBetween>
   );
 };
