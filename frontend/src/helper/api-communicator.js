@@ -64,3 +64,23 @@ export const getUser = async (id, token) => {
     console.error("Error fetching user:", error);
   }
 };
+
+export const createPost = async (userId, description, image, token) => {
+  try {
+    const formData = new FormData();
+    formData.append("userId", userId);
+    formData.append("description", description);
+    if (image) {
+      formData.append("picture", image);
+      formData.append("picturePath", image.name);
+    }
+    const res = await axios.post("http://localhost:3001/posts", formData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (error) {
+    console.error("Error creating post:", error);
+  }
+};
