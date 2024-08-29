@@ -91,6 +91,8 @@ const MyPostWidget = ({ picturePath }) => {
                   sx={{
                     "&:hover": { cursor: "pointer" },
                     width: "100%",
+                    height: "4rem",
+                    alignContent: "center",
                   }}
                 >
                   <input {...getInputProps()} />
@@ -165,10 +167,11 @@ const MyPostWidget = ({ picturePath }) => {
           sx={{
             color: palette.background.alt,
             backgroundColor: palette.primary.main,
+
             borderRadius: "3rem",
           }}
         >
-          POST
+          <Typography>POST</Typography>
         </Button>
       </FlexBetween>
     </WidgetWrapper>

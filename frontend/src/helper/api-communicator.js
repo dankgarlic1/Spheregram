@@ -84,3 +84,29 @@ export const createPost = async (userId, description, image, token) => {
     console.error("Error creating post:", error);
   }
 };
+
+export const getAllPosts = async (token) => {
+  try {
+    const res = await axios.get("http://localhost:3001/posts", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (error) {
+    console.error("Error fetching all posts:", error);
+  }
+};
+
+export const getUserPosts = async (userId, token) => {
+  try {
+    const res = await axios.get(`http://localhost:3001/posts/${userId}/posts`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res;
+  } catch (error) {
+    console.error("Error fetching user's posts:", error);
+  }
+};
