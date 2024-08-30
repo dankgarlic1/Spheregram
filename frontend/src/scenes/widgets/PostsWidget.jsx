@@ -12,7 +12,11 @@ const PostsWidget = ({ userId, isProfile = false }) => {
   const fetchAllPosts = async () => {
     try {
       const res = await getAllPosts(token);
-      dispatch(setPosts({ posts: res }));
+      // Sort posts by `createdAt` in descending order
+      const sortedPosts = res.sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      );
+      dispatch(setPosts({ posts: sortedPosts }));
     } catch (error) {
       console.error("Error fetching all posts:", error);
     }
@@ -20,17 +24,32 @@ const PostsWidget = ({ userId, isProfile = false }) => {
   const fetchUserPosts = async () => {
     try {
       const res = await getUserPosts(userId, token);
-      dispatch(setPosts({ posts: res }));
+      const sortedPosts = res.sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      );
+
+      dispatch(setPosts({ posts: sortedPosts }));
     } catch (error) {
       console.error("Error fetching user's posts:", error);
     }
   };
+  // useEffect(() => {
+  //   if (isProfile) {
+  //     fetchUserPosts();
+  //   } else {
+  //     fetchAllPosts();
+  //   }
+  // }, []);
   useEffect(() => {
-    if (isProfile) {
-      fetchUserPosts();
-    } else {
-      fetchAllPosts();
-    }
+    const intervalId = setInterval(() => {
+      if (isProfile) {
+        fetchUserPosts();
+      } else {
+        fetchAllPosts();
+      }
+    }, 5000); // Poll every 5 seconds
+
+    return () => clearInterval(intervalId); // Cleanup on unmount
   }, []);
 
   return (
@@ -47,6 +66,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
           picturePath,
           likes,
           comments,
+          createdAt,
         }) => (
           <PostWidget
             key={_id}
