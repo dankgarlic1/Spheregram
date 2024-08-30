@@ -117,13 +117,9 @@ export const getUserPosts = async (userId, token) => {
 export const addOrRemoveFriends = async (userId, friendId, token) => {
   try {
     const res = await axios.patch(
-      `http://localhost:3001/user/${userId}/${friendId}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
+      `http://localhost:3001/user/${userId}/${friendId}`
     );
+    console.log("Response received:", res.data);
     return res.data;
   } catch (error) {
     console.error("Error in adding or removing friends:", error);

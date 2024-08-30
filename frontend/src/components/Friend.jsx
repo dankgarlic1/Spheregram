@@ -19,10 +19,16 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
   const primaryDark = palette.primary.dark;
   const main = palette.neutral.main;
   const medium = palette.neutral.medium;
+  console.log(token);
 
-  const isFriend = friends.find((friend) => friend._id === friendId);
+  const isFriend = friends?.find((friend) => friend._id === friendId);
   const patchFriend = async () => {
+    console.log("entered patchfriend");
+
     const res = await addOrRemoveFriends(_id, friendId, token);
+    console.log("called api");
+    console.log(res);
+
     dispatch(setFriends({ friends: res }));
   };
 

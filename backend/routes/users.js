@@ -9,4 +9,4 @@ export const userRouter = express.Router();
 
 userRouter.get("/:id", verifyToken, getUser);
 userRouter.get("/:id/friends", verifyToken, getUserFriend);
-userRouter.patch("/:id/:friendId", verifyToken, addRemoveFriend);
+userRouter.patch("/:id/:friendId", addRemoveFriend);
