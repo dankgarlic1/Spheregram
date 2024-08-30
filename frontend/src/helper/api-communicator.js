@@ -92,8 +92,8 @@ export const getAllPosts = async (token) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(`Token from api-communicator ${token}`);
-    console.log(`Res data: ${JSON.stringify(res.data)}`);
+    // console.log(`Token from api-communicator ${token}`);
+    // console.log(`Res data: ${JSON.stringify(res.data)}`);
 
     return res.data;
   } catch (error) {

@@ -10,7 +10,6 @@ import {
   FavoriteOutlined,
   ShareOutlined,
 } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
 import Friend from "../../components/Friend";
 import { patchLike } from "../../helper/api-communicator";
 
@@ -33,7 +32,6 @@ const PostWidget = ({
 }) => {
   const [isComments, setIsComments] = useState(false);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const token = useSelector((state) => state.token);
   const loggedInUserId = useSelector((state) => state.user._id);
   const isLiked = Boolean(likes[loggedInUserId]);
