@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { setFriends } from "../state";
 import React from "react";
 import { addOrRemoveFriends } from "../helper/api-communicator";
-import WidgetWrapper from "../components/WidgetWrapper";
 import FlexBetween from "../components/FlexBetween";
 import UserImage from "../components/UserImage";
 
@@ -14,7 +13,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
   const navigate = useNavigate();
   const { _id } = useSelector((state) => state.user);
   const token = useSelector((state) => state.token);
-  const friends = useSelector((state) => state.friends);
+  const friends = useSelector((state) => state.user.friends);
   const { palette } = useTheme();
   const primaryLight = palette.primary.light;
   const primaryDark = palette.primary.dark;

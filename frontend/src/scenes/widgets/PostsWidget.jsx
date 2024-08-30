@@ -27,9 +27,9 @@ const PostsWidget = ({ userId, isProfile = false }) => {
   };
   useEffect(() => {
     if (isProfile) {
-      getUserPosts();
+      fetchUserPosts();
     } else {
-      getAllPosts();
+      fetchAllPosts();
     }
   }, []);
 

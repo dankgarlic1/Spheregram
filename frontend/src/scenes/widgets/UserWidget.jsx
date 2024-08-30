@@ -22,7 +22,7 @@ const UserWidget = ({ userId, picturePath }) => {
   const dark = palette.neutral.dark;
   const medium = palette.neutral.medium;
   const main = palette.neutral.main;
-  console.log(`Token from userWidget ${token}`);
+  // console.log(`Token from userWidget ${token}`);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -30,7 +30,7 @@ const UserWidget = ({ userId, picturePath }) => {
         const fetchedUser = await getUser(userId, token);
         setUser(fetchedUser);
 
-        console.log(`user has been set: ${user}`);
+        // console.log(`user has been set: ${user}`);
       } catch (error) {
         console.error("Error fetching user:", error);
       }

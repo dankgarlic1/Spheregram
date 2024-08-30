@@ -51,14 +51,14 @@ export const login = async (values, onSubmitProps, dispatch, navigate) => {
 
 export const getUser = async (id, token) => {
   try {
-    console.log(`Sending token: ${token}`);
+    // console.log(`Sending token: ${token}`);
     const res = await axios.get(`http://localhost:3001/user/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(`Token from api-communicator ${token}`);
-    console.log(`Res data: ${JSON.stringify(res.data.user)}`);
+    // console.log(`Token from api-communicator ${token}`);
+    // console.log(`Res data: ${JSON.stringify(res.data.user)}`);
     return res.data.user;
   } catch (error) {
     console.error("Error fetching user:", error);
@@ -92,6 +92,9 @@ export const getAllPosts = async (token) => {
         Authorization: `Bearer ${token}`,
       },
     });
+    console.log(`Token from api-communicator ${token}`);
+    console.log(`Res data: ${JSON.stringify(res.data)}`);
+
     return res.data;
   } catch (error) {
     console.error("Error fetching all posts:", error);
@@ -134,6 +137,7 @@ export const patchLike = async (postId, userId, token) => {
       { userId },
       { headers: { Authorization: `Bearer ${token}` } }
     );
+
     return res.data;
   } catch (error) {
     console.error("Error in liking/unliking post:", error);
