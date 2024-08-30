@@ -24,8 +24,10 @@ const AdvertWidget = () => {
         style={{ borderRadius: "0.75rem", margin: "0.75rem 0" }}
       />
       <FlexBetween>
-        <Typography color={main}>LigmaCosmetics</Typography>
-        <Typography color={medium}>ligmacosmetics.com</Typography>
+        <Typography color={main}>Deez Cosmetics</Typography>
+        <Typography color={medium} sx={{ ml: "0.3rem" }}>
+          deezcosmetics.com
+        </Typography>
       </FlexBetween>
       <Typography color={medium} m="0.5rem 0">
         Your pathway to stunning and immaculate beauty and made sure your skin

@@ -24,19 +24,39 @@ const UserWidget = ({ userId, picturePath }) => {
   const main = palette.neutral.main;
   // console.log(`Token from userWidget ${token}`);
 
+  // useEffect(() => {
+  //   const fetchUser = async () => {
+  //     try {
+  //       const fetchedUser = await getUser(userId, token);
+  //       setUser(fetchedUser);
+
+  //       // console.log(`user has been set: ${user}`);
+  //     } catch (error) {
+  //       console.error("Error fetching user:", error);
+  //     }
+  //   };
+
+  //   fetchUser();
+  // }, [userId, token]);
+  const fetchUser = async () => {
+    try {
+      const fetchedUser = await getUser(userId, token);
+      setUser(fetchedUser);
+    } catch (error) {
+      console.error("Error fetching user:", error);
+    }
+  };
+
   useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const fetchedUser = await getUser(userId, token);
-        setUser(fetchedUser);
+    fetchUser(); // Fetch data initially
 
-        // console.log(`user has been set: ${user}`);
-      } catch (error) {
-        console.error("Error fetching user:", error);
-      }
-    };
+    // Set up polling
+    const interval = setInterval(() => {
+      fetchUser();
+    }, 3000); // Poll every 3 seconds
 
-    fetchUser();
+    // Clean up interval on component unmount
+    return () => clearInterval(interval);
   }, [userId, token]);
   if (!user) return <div>Loading...</div>;
 
