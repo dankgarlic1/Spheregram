@@ -126,3 +126,16 @@ export const addOrRemoveFriends = async (userId, friendId, token) => {
     console.error("Error in adding or removing friends:", error);
   }
 };
+
+export const patchLike = async (postId, userId, token) => {
+  try {
+    const res = await axios.patch(
+      `http://localhost:3001/posts/${postId}/like`,
+      { userId },
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    return res.data;
+  } catch (error) {
+    console.error("Error in liking/unliking post:", error);
+  }
+};
