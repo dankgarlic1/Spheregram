@@ -8,5 +8,5 @@ import {
 export const userRouter = express.Router();
 
 userRouter.get("/:id", verifyToken, getUser);
-userRouter.get("/:id/friends", verifyToken, getUserFriend);
+userRouter.get("/:id/friends", getUserFriend);
 userRouter.patch("/:id/:friendId", addRemoveFriend);

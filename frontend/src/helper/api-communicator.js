@@ -140,13 +140,9 @@ export const patchLike = async (postId, userId, token) => {
   }
 };
 
-export const getFriends = async (id, token) => {
+export const getFriends = async (id) => {
   try {
-    const res = await axios.get(`http://localhost:3001/user/${id}/friends`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const res = await axios.get(`http://localhost:3001/user/${id}/friends`);
     return res.data;
   } catch (error) {
     console.error("Error in fetching friends", error);

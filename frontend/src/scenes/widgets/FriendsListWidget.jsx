@@ -1,23 +1,19 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { setFriends } from "../../state";
 import Friend from "../../components/Friend";
 import WidgetWrapper from "../../components/WidgetWrapper";
 import { getFriends } from "../../helper/api-communicator";
-import FlexBetween from "../../components/FlexBetween";
 import { Typography, useTheme, Box } from "@mui/material";
 
-const FriendsListWidget = () => {
+const FriendsListWidget = ({ userId }) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { _id } = useSelector((state) => state.user);
-  const token = useSelector((state) => state.token);
+  //   const token = useSelector((state) => state.token);
   const friends = useSelector((state) => state.user.friends);
   const { palette } = useTheme();
 
   const getAllFriends = async () => {
-    const res = await getFriends(_id, token);
+    const res = await getFriends(userId);
     dispatch(setFriends({ friends: res }));
   };
 
@@ -36,7 +32,7 @@ const FriendsListWidget = () => {
         Friends List
       </Typography>
       <Box display="flex" flexDirection="column" gap="1.5rem">
-        {friends.map((friend) => (
+        {friends?.map((friend) => (
           <Friend
             key={friend._id}
             friendId={friend._id}
