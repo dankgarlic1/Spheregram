@@ -47,7 +47,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
       } else {
         fetchAllPosts();
       }
-    }, 5000); // Poll every 5 seconds
+    }, 1500); // Poll every 1.5 seconds
 
     return () => clearInterval(intervalId); // Cleanup on unmount
   }, []);
