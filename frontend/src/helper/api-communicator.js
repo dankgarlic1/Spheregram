@@ -10,7 +10,7 @@ export const register = async (values, onSubmitProps, setPageType) => {
 
   try {
     const response = await axios.post(
-      "http://localhost:3001/auth/register",
+      "https://spheregram-backend.onrender.com/auth/register",
       formData
     );
     const savedUser = response.data;
@@ -28,7 +28,7 @@ export const register = async (values, onSubmitProps, setPageType) => {
 export const login = async (values, onSubmitProps, dispatch, navigate) => {
   try {
     const response = await axios.post(
-      "http://localhost:3001/auth/login",
+      "https://spheregram-backend.onrender.com/auth/login",
       values
     );
 
@@ -52,11 +52,14 @@ export const login = async (values, onSubmitProps, dispatch, navigate) => {
 export const getUser = async (id, token) => {
   try {
     // console.log(`Sending token: ${token}`);
-    const res = await axios.get(`http://localhost:3001/user/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const res = await axios.get(
+      `https://spheregram-backend.onrender.com/user/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     // console.log(`Token from api-communicator ${token}`);
     // console.log(`Res data: ${JSON.stringify(res.data.user)}`);
     return res.data.user;
@@ -74,11 +77,15 @@ export const createPost = async (userId, description, image, token) => {
       formData.append("picture", image);
       formData.append("picturePath", image.name);
     }
-    const res = await axios.post("http://localhost:3001/posts", formData, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const res = await axios.post(
+      "https://spheregram-backend.onrender.com/posts",
+      formData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     return res.data;
   } catch (error) {
     console.error("Error creating post:", error);
@@ -87,11 +94,14 @@ export const createPost = async (userId, description, image, token) => {
 
 export const getAllPosts = async (token) => {
   try {
-    const res = await axios.get("http://localhost:3001/posts", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const res = await axios.get(
+      "https://spheregram-backend.onrender.com/posts",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     // console.log(`Token from api-communicator ${token}`);
     // console.log(`Res data: ${JSON.stringify(res.data)}`);
 
@@ -103,11 +113,14 @@ export const getAllPosts = async (token) => {
 
 export const getUserPosts = async (userId, token) => {
   try {
-    const res = await axios.get(`http://localhost:3001/posts/${userId}/posts`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const res = await axios.get(
+      `https://spheregram-backend.onrender.com/posts/${userId}/posts`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     return res.data;
   } catch (error) {
     console.error("Error fetching user's posts:", error);
@@ -117,7 +130,7 @@ export const getUserPosts = async (userId, token) => {
 export const addOrRemoveFriends = async (userId, friendId, token) => {
   try {
     const res = await axios.patch(
-      `http://localhost:3001/user/${userId}/${friendId}`
+      `https://spheregram-backend.onrender.com/user/${userId}/${friendId}`
     );
     console.log("Response received:", res.data);
     return res.data;
@@ -129,7 +142,7 @@ export const addOrRemoveFriends = async (userId, friendId, token) => {
 export const patchLike = async (postId, userId, token) => {
   try {
     const res = await axios.patch(
-      `http://localhost:3001/posts/${postId}/like`,
+      `https://spheregram-backend.onrender.com/posts/${postId}/like`,
       { userId },
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -142,7 +155,9 @@ export const patchLike = async (postId, userId, token) => {
 
 export const getFriends = async (id) => {
   try {
-    const res = await axios.get(`http://localhost:3001/user/${id}/friends`);
+    const res = await axios.get(
+      `https://spheregram-backend.onrender.com/user/${id}/friends`
+    );
     return res.data;
   } catch (error) {
     console.error("Error in fetching friends", error);
