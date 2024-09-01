@@ -156,12 +156,6 @@ REACT_APP_API_URL=http://localhost:5000/api
 - **material-ui**: React components for faster and easier web development.
 
 
-## 👨‍💻 Author
-
-**Harshit Raizada**  
-[GitHub](https://github.com/dankgarlic1) | [LinkedIn](https://www.linkedin.com/in/harshit-raizada-32b909231)
-
-
 ## 📄 License
 
 This project is licensed under the **ISC License**.
