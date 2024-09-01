@@ -130,13 +130,6 @@ JWT_SECRET=your_jwt_secret
 PORT=5000
 ```
 
-### Frontend
-
-```plaintext
-REACT_APP_API_URL=http://localhost:5000/api
-```
-
-
 ## 🛠️ Dependencies
 
 ### Backend
