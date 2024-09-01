@@ -1,14 +1,10 @@
-Here's a polished README file for your project:
 
----
 
 # 🌐 SphereGram
 
 **SphereGram** is a social media platform that allows users to share images and connect with friends in a secure and modern environment. This project consists of a backend built with Node.js and Express, and a frontend developed with React.js and Material-UI.
 
-## 🎥 Video Demonstration
 
----
 
 ## 📂 Project Structure
 
@@ -32,7 +28,7 @@ This project is divided into two main parts:
 - **Redux Toolkit** (for state management)
 - **Formik & Yup** (for form validation)
 
----
+
 
 ## 🚀 Getting Started
 
@@ -97,7 +93,6 @@ This project is divided into two main parts:
      npm start
      ```
 
----
 
 ## 🌟 Features
 
@@ -107,7 +102,6 @@ This project is divided into two main parts:
 - **State Management**: Utilizes Redux Toolkit for efficient state management.
 - **Form Validation**: Forms are validated using Formik and Yup.
 
----
 
 ## 📜 Scripts
 
@@ -123,7 +117,6 @@ This project is divided into two main parts:
 - **`npm test`**: Runs tests.
 - **`npm run eject`**: Ejects the app from Create React App (use with caution).
 
----
 
 ## 🔒 Environment Variables
 
@@ -143,7 +136,6 @@ PORT=5000
 REACT_APP_API_URL=http://localhost:5000/api
 ```
 
----
 
 ## 🛠️ Dependencies
 
@@ -163,17 +155,14 @@ REACT_APP_API_URL=http://localhost:5000/api
 - **formik**: Build forms in React, without the tears.
 - **material-ui**: React components for faster and easier web development.
 
----
 
 ## 👨‍💻 Author
 
 **Harshit Raizada**  
 [GitHub](https://github.com/dankgarlic1) | [LinkedIn](https://www.linkedin.com/in/harshit-raizada-32b909231)
 
----
 
 ## 📄 License
 
 This project is licensed under the **ISC License**.
 
----
