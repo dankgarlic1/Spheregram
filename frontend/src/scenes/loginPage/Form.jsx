@@ -3,6 +3,7 @@ import { Formik } from "formik";
 import Dropzone from "react-dropzone";
 import * as yup from "yup";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import CircularProgress from "@mui/material/CircularProgress";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { register, login } from "../../helper/api-communicator";
@@ -47,6 +48,7 @@ const initialValuesLogin = {
 
 export const Form = () => {
   const [pageType, setPageType] = useState("login"); //for switching register,login
+  const [loading, setLoading] = useState(false); // for loading state
   const { palette } = useTheme();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -56,12 +58,14 @@ export const Form = () => {
   const isRegister = pageType === "register";
 
   const handleSubmit = async (values, onSubmitProps) => {
+    setLoading(true);
     if (isLogin) {
       await login(values, onSubmitProps, dispatch, navigate);
     }
     if (isRegister) {
       await register(values, onSubmitProps, setPageType);
     }
+    setLoading(false);
   };
   return (
     <div>
@@ -214,7 +218,7 @@ export const Form = () => {
               />
             </Box>
             {/* Buttons */}
-            <Button
+            {/* <Button
               fullWidth
               type="submit"
               sx={{
@@ -225,6 +229,34 @@ export const Form = () => {
                 "&:hover": { color: palette.primary.main },
               }}
             >
+              {isLogin ? "LOGIN" : "REGISTER"}
+            </Button> */}
+            <Button
+              fullWidth
+              type="submit"
+              sx={{
+                m: "2rem 0",
+                p: "1rem",
+                backgroundColor: palette.primary.main,
+                color: palette.background.alt,
+                "&:hover": { color: palette.primary.main },
+                position: "relative",
+              }}
+              disabled={loading} // Disable button while loading
+            >
+              {loading && (
+                <CircularProgress
+                  size={24}
+                  sx={{
+                    color: palette.background.alt,
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    marginTop: "-12px",
+                    marginLeft: "-12px",
+                  }}
+                />
+              )}
               {isLogin ? "LOGIN" : "REGISTER"}
             </Button>
             <Typography
@@ -244,6 +276,18 @@ export const Form = () => {
               {isLogin
                 ? "Don't have an account? Signup here"
                 : "Already have an account? Login here"}
+            </Typography>
+            {/* Warning Message */}
+            <Typography
+              sx={{
+                mt: "1rem",
+                color: palette.neutral.medium,
+                fontSize: "0.875rem",
+                textAlign: "center",
+              }}
+            >
+              Since this application is deployed on Render, requests might take
+              more than 50 seconds. Please be patient.
             </Typography>
           </form>
         )}
